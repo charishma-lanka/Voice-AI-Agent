@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Voice AI | Clinical Appointment Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Voice AI Healthcare Agent</h1>
+            <p class="subtitle">Real-Time Multilingual Clinical Appointment Booking</p>
+        </div>
+
+        <div class="main-card">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    <span class="status-text" id="statusText">Connected</span>
+                </div>
+                <div class="latency-badge">
+                    <span>⚡ Latency</span>
+                    <span class="latency-value" id="latencyValue">0ms</span>
+                </div>
+            </div>
+
+            <!-- Microphone -->
+            <div class="mic-section">
+                <button class="mic-button" id="micButton">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                </button>
+                <div id="recordingIndicator" class="recording-indicator" style="display: none;">
+                    <div class="recording-wave">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span>Recording... Speak now</span>
+                </div>
+            </div>
+
+            <!-- Latency Card -->
+            <div class="latency-card">
+                <div class="latency-label">END-TO-END LATENCY</div>
+                <div class="latency-number" id="latencyNumber">---</div>
+                <div class="latency-target">Target: &lt;450ms</div>
+                <div class="latency-status" id="latencyStatus">✅ Within target</div>
+            </div>
+
+            <!-- Conversation -->
+            <div class="conversation">
+                <div class="message user-message" id="userMessage">
+                    <div class="message-role">YOU</div>
+                    <div class="message-text">Click the microphone and speak...</div>
+                </div>
+                <div class="message ai-message" id="aiMessage">
+                    <div class="message-role">AI AGENT</div>
+                    <div class="message-text">Ready to help you book appointments in English, Hindi, or Tamil!</div>
+                </div>
+                <div class="conversation-footer">
+                    <div class="language-badge" id="languageBadge">🇬🇧 English</div>
+                    <div class="timestamp" id="timestamp"></div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div class="input-area">
+                <input type="text" class="text-input" id="textInput" placeholder="Type your request...">
+                <button class="send-btn" id="sendBtn">Send</button>
+            </div>
+
+            <!-- Example Buttons -->
+            <div class="example-buttons">
+                <button class="example-btn" data-text="Book appointment with cardiologist">📚 Book Cardiologist</button>
+                <button class="example-btn" data-text="Book appointment with dermatologist">🩺 Book Dermatologist</button>
+                <button class="example-btn" data-text="10:00 AM">⏰ 10:00 AM</button>
+                <button class="example-btn" data-text="Cancel appointment 1">❌ Cancel</button>
+                <button class="example-btn" data-text="मुझे डॉक्टर से मिलना है">🇮🇳 Hindi</button>
+                <button class="example-btn" data-text="நாளை மருத்துவரை பார்க்க வேண்டும்">🇮🇳 Tamil</button>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <span>⚡ Real-time WebSocket</span>
+                <span>🎯 Target &lt;450ms</span>
+                <span>🌐 English | हिन्दी | தமிழ்</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
