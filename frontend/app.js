@@ -21,8 +21,8 @@ const sendBtn = document.getElementById('sendBtn');
 
 // Connect to WebSocket
 function connectWebSocket() {
-    ws = new WebSocket('ws://localhost:8000/ws/123');
     
+    ws = new WebSocket('wss://voice-ai-agent-njcg.onrender.com/ws/123');
     ws.onopen = () => {
         console.log('✅ WebSocket connected');
         statusText.textContent = 'Connected';
