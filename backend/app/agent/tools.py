@@ -15,7 +15,6 @@ class AppointmentTools:
     def check_availability(self, specialty: str, date: str) -> Dict[str, Any]:
         """
         Check doctor availability
-        Returns: {"available": bool, "slots": list, "doctor": str, "message": str}
         """
         # Find matching doctors
         doctors = self.db.query(Doctor).filter(
@@ -60,7 +59,6 @@ class AppointmentTools:
     def book_appointment(self, patient_id: int, doctor_id: int, date: str, time_slot: str) -> Dict[str, Any]:
         """
         Book an appointment
-        Returns: {"success": bool, "appointment_id": int, "message": str}
         """
         # Validate date not in past
         try:
@@ -113,7 +111,6 @@ class AppointmentTools:
     def cancel_appointment(self, appointment_id: int) -> Dict[str, Any]:
         """
         Cancel an existing appointment
-        Returns: {"success": bool, "message": str}
         """
         appointment = self.db.query(Appointment).filter(Appointment.id == appointment_id).first()
         
@@ -140,7 +137,6 @@ class AppointmentTools:
     def reschedule_appointment(self, appointment_id: int, new_date: str, new_time: str) -> Dict[str, Any]:
         """
         Reschedule an appointment
-        Returns: {"success": bool, "message": str}
         """
         appointment = self.db.query(Appointment).filter(Appointment.id == appointment_id).first()
         

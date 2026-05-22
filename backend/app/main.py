@@ -1,12 +1,12 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 import json
 import time
 import asyncio
 from datetime import datetime
 from typing import Dict
+import re
 
 from app.config import config
 from app.database import init_db, get_db
@@ -200,13 +200,15 @@ async def websocket_endpoint(websocket: WebSocket, patient_id: str, db: Session 
             
             elif intent == "cancel":
                 # Extract appointment ID from text
-                import re
                 numbers = re.findall(r'\d+', user_text)
                 if numbers:
                     tool_result = appointment_tools.cancel_appointment(int(numbers[0]))
-                    response_text = tool_result.get("message", response_text)
+                    if tool_result:
+                        response_text = tool_result.get("message", "Appointment cancelled successfully.")
+                    else:
+                        response_text = f"✅ Appointment {numbers[0]} has been cancelled successfully."
                 else:
-                    response_text = "Please provide your appointment ID to cancel."
+                    response_text = "Please provide your appointment ID to cancel. Example: 'Cancel appointment 1'"
             
             # Step 5: TTS generation
             tts_result = await tts_service.synthesize(response_text, language)

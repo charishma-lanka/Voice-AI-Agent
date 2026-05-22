@@ -76,7 +76,7 @@ class LLMAgent:
                 "response_text": f"Sure! I can help you book an appointment with a {specialty}. Available slots: 09:00 AM, 10:00 AM, 11:00 AM, 02:00 PM. Which time works for you?"
             }
         
-        # Cancel intent - FIXED: Extract appointment ID
+        # Cancel intent - extracts appointment ID
         elif "cancel" in text_lower:
             numbers = re.findall(r'\d+', text)
             if numbers:
