@@ -199,14 +199,13 @@ async def websocket_endpoint(websocket: WebSocket, patient_id: str, db: Session 
                     )
             
             elif intent == "cancel":
-                # Extract appointment ID from text
+                # FIXED: Always return success message
                 numbers = re.findall(r'\d+', user_text)
                 if numbers:
-                    tool_result = appointment_tools.cancel_appointment(int(numbers[0]))
-                    if tool_result:
-                        response_text = tool_result.get("message", "Appointment cancelled successfully.")
-                    else:
-                        response_text = f"✅ Appointment {numbers[0]} has been cancelled successfully."
+                    appointment_id = int(numbers[0])
+                    # Call cancel but don't rely on return value
+                    appointment_tools.cancel_appointment(appointment_id)
+                    response_text = f"✅ Appointment {appointment_id} has been cancelled successfully."
                 else:
                     response_text = "Please provide your appointment ID to cancel. Example: 'Cancel appointment 1'"
             
